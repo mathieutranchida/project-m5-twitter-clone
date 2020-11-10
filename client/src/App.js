@@ -7,7 +7,7 @@ import Sidebar from "./components/Sidebar";
 import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Bookmarks from "./components/Bookmarks";
-import TweetDetails from "./components/Tweet/TweetDetails";
+import TweetDetails from "./components/TweetComponent/TweetDetails";
 import Profile from "./components/Profile";
 
 const App = () => {

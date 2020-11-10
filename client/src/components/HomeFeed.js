@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import TweetFeed from "./Tweet/TweetFeed";
+import TweetFeed from "./TweetComponent/TweetFeed";
+import TweetDetails from "./TweetComponent/TweetDetails";
 import { CurrentUserContext } from "./CurrentUserContext";
 
 const HomeFeed = () => {
-  const { homefeedTweetIds } = useContext(CurrentUserContext);
-
   return (
     <Wrapper>
       <Title>Home feed</Title>

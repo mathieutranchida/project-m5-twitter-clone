@@ -5,10 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { CurrentUserProvider } from "./components/CurrentUserContext";
+import { TweetProvider } from "./components/TweetComponent/TweetContext";
 
 ReactDOM.render(
   <CurrentUserProvider>
-    <App />
+    <TweetProvider>
+      <App />
+    </TweetProvider>
   </CurrentUserProvider>,
   document.getElementById("root")
 );
