@@ -4,7 +4,7 @@ import moment from "moment";
 export const TweetContext = React.createContext(null);
 
 export const TweetProvider = ({ children }) => {
-  const [homefeedTweetIds, setHomefeedTweetIds] = React.useState(null);
+  const [homefeed, setHomefeed] = React.useState(null);
   const [devTweet, setDevTweet] = React.useState(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const TweetProvider = ({ children }) => {
         return res.json();
       })
       .then((data) => {
-        setHomefeedTweetIds(data.tweetIds);
+        setHomefeed(data);
       });
 
     // Fetch a single Tweet for development purpose
@@ -30,7 +30,7 @@ export const TweetProvider = ({ children }) => {
   return (
     <TweetContext.Provider
       value={{
-        homefeedTweetIds,
+        homefeed,
         devTweet,
       }}
     >

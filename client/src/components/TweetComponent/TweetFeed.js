@@ -8,18 +8,19 @@ import ActionBar from "./FeedTweet/ActionBar";
 
 import { TweetContext } from "./TweetContext";
 
-const TweetFeed = () => {
+const TweetFeed = ({ tweet }) => {
   return (
     <MainWrapper>
       <Wrapper>
-        <Avatar />
+        <Avatar tweet={tweet} />
         <SecondaryDiv>
-          <Header />
-          <TweetContents />
+          <Header tweet={tweet} />
+          <TweetContents tweet={tweet} />
         </SecondaryDiv>
       </Wrapper>
       <Divider />
       <ActionBar />
+      <DividerBig />
     </MainWrapper>
   );
 };
@@ -40,6 +41,11 @@ const MainWrapper = styled.div``;
 
 const Divider = styled.div`
   height: 1px;
+  background: rgb(230, 236, 240);
+`;
+
+const DividerBig = styled.div`
+  height: 3px;
   background: rgb(230, 236, 240);
 `;
 

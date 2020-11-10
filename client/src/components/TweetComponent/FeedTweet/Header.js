@@ -1,21 +1,17 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { TweetContext } from "../TweetContext";
-
-const Header = () => {
-  const { devTweet } = useContext(TweetContext);
-
-  return devTweet ? (
-    <Wrapper>
-      <Name>
-        <DisplayName>{devTweet.author.displayName}</DisplayName>
-        <Username>@{devTweet.author.handle}</Username>
-        <TimeStamp>INSERT TIMESTAMP HERE</TimeStamp>
-      </Name>
-    </Wrapper>
-  ) : (
-    <div>loading</div>
+const Header = ({ tweet }) => {
+  return (
+    tweet && (
+      <Wrapper>
+        <Name>
+          <DisplayName>{tweet.author.displayName}</DisplayName>
+          <Username>@{tweet.author.handle}</Username>
+          <TimeStamp>INSERT TIMESTAMP HERE</TimeStamp>
+        </Name>
+      </Wrapper>
+    )
   );
 };
 

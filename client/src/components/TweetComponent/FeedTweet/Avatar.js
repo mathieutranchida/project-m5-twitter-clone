@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { TweetContext } from "../TweetContext";
-
-const ActionBar = () => {
-  const { devTweet } = useContext(TweetContext);
+const ActionBar = ({ tweet }) => {
   return (
-    devTweet && (
+    tweet && (
       <Wrapper>
-        <Avatar src={devTweet.author.avatarSrc} />
+        <Avatar src={tweet.author.avatarSrc} />
       </Wrapper>
     )
   );

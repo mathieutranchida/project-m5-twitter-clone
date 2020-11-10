@@ -3,14 +3,12 @@ import styled from "styled-components";
 
 import { TweetContext } from "../TweetContext";
 
-const TweetContents = () => {
-  const { devTweet } = useContext(TweetContext);
-
+const TweetContents = ({ tweet }) => {
   return (
-    devTweet && (
+    tweet && (
       <Wrapper>
-        <Description>{devTweet.status}</Description>
-        {devTweet.media.length > 0 && <Image src={devTweet.media[0].url} />}
+        <Description>{tweet.status}</Description>
+        {tweet.media.length > 0 && <Image src={tweet.media[0].url} />}
       </Wrapper>
     )
   );
@@ -26,7 +24,7 @@ const Description = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  max-height: 50vh;
   border-radius: 20px;
 `;
 
