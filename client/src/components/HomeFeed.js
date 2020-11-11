@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import TweetFeed from "./TweetComponent/TweetFeed";
+import MeowPost from "./MeowPost";
 import { TweetContext } from "./TweetComponent/TweetContext";
 
 const HomeFeed = () => {
@@ -14,15 +15,7 @@ const HomeFeed = () => {
   return (
     <Wrapper>
       <Title>Home</Title>
-      <MeowForm>
-        <MeowInput
-          type={"text"}
-          maxlength={2}
-          placeholder={"What's happening?"}
-        />{" "}
-        <br />
-        <MeowButton>Meow</MeowButton>
-      </MeowForm>
+      <MeowPost />
       {tweets.map((tweet, index) => {
         return <TweetFeed tweet={tweet} />;
       })}

@@ -7,7 +7,7 @@ import UserProfileFeed from "./UserProfileFeed";
 
 const UserProfile = () => {
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+
   return (
     <Wrapper>
       <Header src={currentUser.bannerSrc} />
