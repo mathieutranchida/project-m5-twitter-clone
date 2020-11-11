@@ -3,16 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import history from "./history";
+import { Router } from "react-router";
 
 import { CurrentUserProvider } from "./components/CurrentUserContext";
 import { TweetProvider } from "./components/TweetComponent/TweetContext";
 
 ReactDOM.render(
-  <CurrentUserProvider>
-    <TweetProvider>
-      <App />
-    </TweetProvider>
-  </CurrentUserProvider>,
+  <Router history={history}>
+    <CurrentUserProvider>
+      <TweetProvider>
+        <App />
+      </TweetProvider>
+    </CurrentUserProvider>
+  </Router>,
   document.getElementById("root")
 );
 

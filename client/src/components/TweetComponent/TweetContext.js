@@ -5,7 +5,6 @@ export const TweetContext = React.createContext(null);
 
 export const TweetProvider = ({ children }) => {
   const [homefeed, setHomefeed] = React.useState(null);
-  const [singleTweet, setSingleTweet] = React.useState(null);
   const [userProfile, setUserProfile] = React.useState(null);
 
   useEffect(() => {
@@ -18,15 +17,6 @@ export const TweetProvider = ({ children }) => {
         setHomefeed(data);
       });
 
-    // Fetch a single Tweet for development purpose
-    fetch(`/api/tweet/:tweetId`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setSingleTweet(data.tweet);
-      });
-
     // Fetch the a user's profile's tweets
     fetch(`/api/:handle/feed`)
       .then((res) => {
@@ -37,13 +27,10 @@ export const TweetProvider = ({ children }) => {
       });
   }, []);
 
-  console.log(singleTweet);
-
   return (
     <TweetContext.Provider
       value={{
         homefeed,
-        singleTweet,
         userProfile,
       }}
     >

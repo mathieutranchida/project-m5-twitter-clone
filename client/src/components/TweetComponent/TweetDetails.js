@@ -1,20 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router";
 
 import Header from "./BigTweet/Header";
 import TweetContents from "./BigTweet/TweetContent";
-import ActionBar from "./FeedTweet/ActionBar";
+import ActionBar from "./BigTweet/ActionBar";
 import { TweetContext } from "./TweetContext";
 
 const TweetDetails = () => {
+  const [singleTweet, setSingleTweet] = React.useState(null);
+
+  let { tweetId } = useParams();
+
+  useEffect(() => {
+    // Fetch a single Tweet for development purpose
+    fetch(`/api/tweet/${tweetId}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setSingleTweet(data.tweet);
+      });
+  }, []);
+
   return (
-    <Wrapper>
-      <Header />
-      <TweetContents />
-      <Divider />
-      <ActionBar />
-      <Divider />
-    </Wrapper>
+    singleTweet && (
+      <Wrapper>
+        <Header singleTweet={singleTweet} />
+        <TweetContents singleTweet={singleTweet} />
+        <Divider />
+        <ActionBar singleTweet={singleTweet} />
+        <Divider />
+      </Wrapper>
+    )
   );
 };
 

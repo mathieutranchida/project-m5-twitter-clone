@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import history from "../../history";
 
 import Avatar from "./FeedTweet/Avatar";
 import Header from "./FeedTweet/Header";
@@ -9,8 +10,13 @@ import ActionBar from "./FeedTweet/ActionBar";
 import { TweetContext } from "./TweetContext";
 
 const TweetFeed = ({ tweet }) => {
+  console.log(tweet);
   return (
-    <MainWrapper>
+    <MainWrapper
+      onClick={() => {
+        history.push(`/tweet/${tweet.id}`);
+      }}
+    >
       <Wrapper>
         <Avatar tweet={tweet} />
         <SecondaryDiv>

@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 import { TweetContext } from "../TweetContext";
 
-const Header = () => {
-  const { singleTweet } = useContext(TweetContext);
-
+const Header = ({ singleTweet }) => {
   return (
     singleTweet && (
       <Wrapper>

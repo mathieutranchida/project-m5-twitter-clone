@@ -11,8 +11,6 @@ const IconStyle = {
 };
 
 const ActionBar = () => {
-  const { singleTweet } = useContext(TweetContext);
-
   return (
     <Wrapper>
       <ActionDiv>
@@ -21,13 +19,13 @@ const ActionBar = () => {
         </Action>
       </ActionDiv>
       <ActionDiv>
-        <Stats>{singleTweet.numRetweets > 0 ?? singleTweet.numRetweets}</Stats>
+        <Stats></Stats>
         <Action color="rgb(23, 191, 99)" size={40}>
           <FiRepeat style={IconStyle} />
         </Action>
       </ActionDiv>
       <ActionDiv>
-        <Stats>{singleTweet.numLikes > 0 ?? singleTweet.numLikes}</Stats>
+        <Stats></Stats>
         <Action color="rgb(224, 36, 94)" size={40}>
           <FiHeart style={IconStyle} />
         </Action>
