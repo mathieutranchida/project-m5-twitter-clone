@@ -1,12 +1,20 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import history from "../../../history";
 
 const Header = ({ tweet }) => {
   return (
     tweet && (
       <Wrapper>
         <Name>
-          <DisplayName>{tweet.author.displayName}</DisplayName>
+          <DisplayName
+            onClick={(event) => {
+              event.stopPropagation();
+              history.push(`/${tweet.author.handle}`);
+            }}
+          >
+            {tweet.author.displayName}
+          </DisplayName>
           <Username>@{tweet.author.handle}</Username>
           <TimeStamp>INSERT TIMESTAMP HERE</TimeStamp>
         </Name>
@@ -31,6 +39,10 @@ const DisplayName = styled.div`
   line-height: 20px;
   font-weight: bold;
   padding-right: 10px;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 const Username = styled.div`

@@ -9,6 +9,7 @@ import Notifications from "./components/Notifications";
 import Bookmarks from "./components/Bookmarks";
 import TweetDetails from "./components/TweetComponent/TweetDetails";
 import UserProfile from "./components/UserProfile";
+import Profile from "./components/Profile";
 
 const App = () => {
   return (
@@ -29,8 +30,11 @@ const App = () => {
           <Route path="/tweet/:tweetId">
             <TweetDetails />
           </Route>
-          <Route path="/:profileId">
+          <Route path="/my-profile">
             <UserProfile />
+          </Route>
+          <Route path="/:profileId">
+            <Profile />
           </Route>
         </Switch>
       </Wrapper>
