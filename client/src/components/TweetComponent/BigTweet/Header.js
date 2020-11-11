@@ -4,18 +4,18 @@ import styled from "styled-components";
 import { TweetContext } from "../TweetContext";
 
 const Header = () => {
-  const { devTweet } = useContext(TweetContext);
+  const { singleTweet } = useContext(TweetContext);
 
-  return devTweet ? (
-    <Wrapper>
-      <Avatar src={devTweet.author.avatarSrc} />
-      <Name>
-        <DisplayName>{devTweet.author.displayName}</DisplayName>
-        <Username>@{devTweet.author.handle}</Username>
-      </Name>
-    </Wrapper>
-  ) : (
-    <div>loading</div>
+  return (
+    singleTweet && (
+      <Wrapper>
+        <Avatar src={singleTweet.author.avatarSrc} />
+        <Name>
+          <DisplayName>{singleTweet.author.displayName}</DisplayName>
+          <Username>@{singleTweet.author.handle}</Username>
+        </Name>
+      </Wrapper>
+    )
   );
 };
 

@@ -19,7 +19,7 @@ const TweetFeed = ({ tweet }) => {
         </SecondaryDiv>
       </Wrapper>
       <Divider />
-      <ActionBar />
+      <ActionBar tweet={tweet} />
       <DividerBig />
     </MainWrapper>
   );

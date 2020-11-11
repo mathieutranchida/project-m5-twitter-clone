@@ -2,20 +2,41 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { FiMessageCircle, FiRepeat, FiHeart, FiUpload } from "react-icons/fi";
 
+import Action from "../FeedTweet/Action";
 import { TweetContext } from "../TweetContext";
 
 const IconStyle = {
-  height: "25px",
-  width: "25px",
+  height: "22px",
+  width: "20px",
 };
 
 const ActionBar = () => {
+  const { singleTweet } = useContext(TweetContext);
+
   return (
     <Wrapper>
-      <FiMessageCircle style={IconStyle} />
-      <FiRepeat style={IconStyle} />
-      <FiHeart style={IconStyle} />
-      <FiUpload style={IconStyle} />
+      <ActionDiv>
+        <Action color="rgb(27, 149, 224)" size={40}>
+          <FiMessageCircle style={IconStyle} />
+        </Action>
+      </ActionDiv>
+      <ActionDiv>
+        <Stats>{singleTweet.numRetweets > 0 ?? singleTweet.numRetweets}</Stats>
+        <Action color="rgb(23, 191, 99)" size={40}>
+          <FiRepeat style={IconStyle} />
+        </Action>
+      </ActionDiv>
+      <ActionDiv>
+        <Stats>{singleTweet.numLikes > 0 ?? singleTweet.numLikes}</Stats>
+        <Action color="rgb(224, 36, 94)" size={40}>
+          <FiHeart style={IconStyle} />
+        </Action>
+      </ActionDiv>
+      <ActionDiv>
+        <Action color="rgb(27, 149, 224)" size={40}>
+          <FiUpload style={IconStyle} />
+        </Action>
+      </ActionDiv>
     </Wrapper>
   );
 };
@@ -25,6 +46,16 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 10px;
+  height: 48px;
+`;
+
+const ActionDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Stats = styled.div`
+  margin-right: 10px;
 `;
 
 export default ActionBar;

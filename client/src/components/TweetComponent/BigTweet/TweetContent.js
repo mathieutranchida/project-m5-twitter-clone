@@ -4,17 +4,18 @@ import styled from "styled-components";
 import { TweetContext } from "../TweetContext";
 
 const TweetContents = () => {
-  const { devTweet } = useContext(TweetContext);
-  console.log(devTweet);
+  const { singleTweet } = useContext(TweetContext);
 
-  return devTweet ? (
-    <Wrapper>
-      <Description>{devTweet.status}</Description>
-      {devTweet.media.length > 0 && <Image src={devTweet.media[0].url} />}
-      <Timestamp>INSERT DATE HERE WITH MOMENT</Timestamp>
-    </Wrapper>
-  ) : (
-    <div>loading</div>
+  return (
+    singleTweet && (
+      <Wrapper>
+        <Description>{singleTweet.status}</Description>
+        {singleTweet.media.length > 0 && (
+          <Image src={singleTweet.media[0].url} />
+        )}
+        <Timestamp>INSERT DATE HERE WITH MOMENT</Timestamp>
+      </Wrapper>
+    )
   );
 };
 

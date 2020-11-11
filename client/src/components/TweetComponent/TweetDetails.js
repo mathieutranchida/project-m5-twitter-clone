@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Header from "./BigTweet/Header";
 import TweetContents from "./BigTweet/TweetContent";
-import ActionBar from "./BigTweet/ActionBar";
+import ActionBar from "./FeedTweet/ActionBar";
 import { TweetContext } from "./TweetContext";
 
 const TweetDetails = () => {
