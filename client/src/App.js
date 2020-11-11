@@ -8,8 +8,8 @@ import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Bookmarks from "./components/Bookmarks";
 import TweetDetails from "./components/TweetComponent/TweetDetails";
-import UserProfile from "./components/UserProfile";
-import Profile from "./components/Profile";
+import UserProfile from "./components/Profile/UserProfile";
+import Profile from "./components/Profile/Profile";
 
 const App = () => {
   return (
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/tweet/:tweetId">
             <TweetDetails />
           </Route>
-          <Route path="/my-profile">
+          <Route path="/treasurymog">
             <UserProfile />
           </Route>
           <Route path="/:profileId">

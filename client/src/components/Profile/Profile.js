@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { useParams } from "react-router";
+import ProfileFeed from "./ProfileFeed";
 
 const Profile = () => {
   const [getProfile, setGetProfile] = React.useState(null);
@@ -14,7 +15,6 @@ const Profile = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setGetProfile(data.profile);
       });
   }, []);
@@ -44,6 +44,7 @@ const Profile = () => {
               <strong>{getProfile.numFollowers}</strong> Followers
             </Followers>
           </FollowDetails>
+          <ProfileFeed />
         </Body>
       </Wrapper>
     )

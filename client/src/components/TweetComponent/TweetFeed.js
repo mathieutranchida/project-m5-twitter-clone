@@ -10,7 +10,6 @@ import ActionBar from "./FeedTweet/ActionBar";
 import { TweetContext } from "./TweetContext";
 
 const TweetFeed = ({ tweet }) => {
-  console.log(tweet);
   return (
     <MainWrapper
       onClick={() => {

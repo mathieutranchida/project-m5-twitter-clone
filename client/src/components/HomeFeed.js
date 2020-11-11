@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import TweetFeed from "./TweetComponent/TweetFeed";
-import TweetDetails from "./TweetComponent/TweetDetails";
-import { CurrentUserContext } from "./CurrentUserContext";
 import { TweetContext } from "./TweetComponent/TweetContext";
 
 const HomeFeed = () => {

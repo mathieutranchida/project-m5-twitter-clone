@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "../CurrentUserContext";
+import UserProfileFeed from "./UserProfileFeed";
 
 const UserProfile = () => {
   const { currentUser } = useContext(CurrentUserContext);
@@ -31,6 +32,7 @@ const UserProfile = () => {
             <strong>{currentUser.numFollowers}</strong> Followers
           </Followers>
         </FollowDetails>
+        <UserProfileFeed />
       </Body>
     </Wrapper>
   );

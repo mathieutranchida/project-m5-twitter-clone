@@ -23,7 +23,7 @@ const Sidebar = () => {
           <FiHome style={IconStyle} />
           <Title>Home</Title>
         </StyledNavLink>
-        <StyledNavLink activeClassName="active" to="/my-profile">
+        <StyledNavLink activeClassName="active" to="/treasurymog">
           <FiUser style={IconStyle} />
           <Title>Profile</Title>
         </StyledNavLink>
