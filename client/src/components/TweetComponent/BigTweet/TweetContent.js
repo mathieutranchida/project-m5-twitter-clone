@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const TweetContents = ({ singleTweet }) => {
+  let hour = moment(singleTweet.timestamp).format("LT");
+  let date = moment(singleTweet.timestamp).format("MMM D YYYY");
+  const timestamp = `${hour} · ${date} · Critter web app`;
+
   return (
     singleTweet && (
       <Wrapper>
@@ -9,7 +14,7 @@ const TweetContents = ({ singleTweet }) => {
         {singleTweet.media.length > 0 && (
           <Image src={singleTweet.media[0].url} />
         )}
-        <Timestamp>INSERT DATE HERE WITH MOMENT</Timestamp>
+        <Timestamp>{timestamp}</Timestamp>
       </Wrapper>
     )
   );

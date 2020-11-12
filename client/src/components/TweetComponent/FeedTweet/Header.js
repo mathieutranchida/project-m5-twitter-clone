@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import history from "../../../history";
+import moment from "moment";
 
 const Header = ({ tweet }) => {
+  let date = moment(tweet.timestamp).format("MMM Do");
+
   return (
     tweet && (
       <Wrapper>
@@ -18,7 +21,8 @@ const Header = ({ tweet }) => {
             {tweet.author.displayName}
           </DisplayName>
           <Username>@{tweet.author.handle}</Username>
-          <TimeStamp>INSERT TIMESTAMP HERE</TimeStamp>
+          <Username>.</Username>
+          <TimeStamp>{date}</TimeStamp>
         </Name>
       </Wrapper>
     )
@@ -32,7 +36,7 @@ const Wrapper = styled.header`
 const Name = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: row;
+  align-items: center;
   padding: 0px;
 `;
 

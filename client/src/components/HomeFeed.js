@@ -4,10 +4,19 @@ import styled from "styled-components";
 import TweetFeed from "./TweetComponent/TweetFeed";
 import MeowPost from "./MeowPost";
 import { TweetContext } from "./TweetComponent/TweetContext";
+import Loading from "./Loading";
 
 const HomeFeed = () => {
-  const { homefeed } = useContext(TweetContext);
+  const { homefeed, status } = useContext(TweetContext);
   let tweets = [];
+  if (status === "loading") {
+    return (
+      <LoadingWrapper>
+        <Loading />
+      </LoadingWrapper>
+    );
+  }
+
   if (homefeed) {
     tweets = Object.values(homefeed.tweetsById);
   }
@@ -22,6 +31,12 @@ const HomeFeed = () => {
     </Wrapper>
   );
 };
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  top: 375px;
+  left: 375px;
+`;
 
 const Wrapper = styled.div`
   width: 800px;

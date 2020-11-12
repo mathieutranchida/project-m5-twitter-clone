@@ -6,6 +6,7 @@ export const TweetContext = React.createContext(null);
 export const TweetProvider = ({ children }) => {
   const [homefeed, setHomefeed] = React.useState(null);
   const [userProfile, setUserProfile] = React.useState(null);
+  const [status, setStatus] = React.useState("loading");
 
   useEffect(() => {
     // Fetch for homefeed
@@ -15,6 +16,7 @@ export const TweetProvider = ({ children }) => {
       })
       .then((data) => {
         setHomefeed(data);
+        setStatus("idle");
       });
 
     // Fetch the a user's profile's tweets
@@ -32,6 +34,7 @@ export const TweetProvider = ({ children }) => {
       value={{
         homefeed,
         userProfile,
+        status,
       }}
     >
       {children}

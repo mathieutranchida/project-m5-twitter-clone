@@ -8,6 +8,7 @@ import TweetContents from "./BigTweet/TweetContent";
 import ActionBar from "./BigTweet/ActionBar";
 import { FiArrowLeft } from "react-icons/fi";
 import { TweetContext } from "./TweetContext";
+import Loading from "../Loading";
 
 const IconStyle = {
   height: "30px",
@@ -32,24 +33,26 @@ const TweetDetails = () => {
       });
   }, []);
 
-  return (
-    singleTweet && (
-      <Wrapper>
-        <HeaderWrapper
-          onClick={() => {
-            history.push(`/`);
-          }}
-        >
-          <FiArrowLeft style={IconStyle} />
-          <Back>Back to home</Back>
-        </HeaderWrapper>
-        <Header singleTweet={singleTweet} />
-        <TweetContents singleTweet={singleTweet} />
-        <Divider />
-        <ActionBar singleTweet={singleTweet} />
-        <Divider />
-      </Wrapper>
-    )
+  return singleTweet ? (
+    <Wrapper>
+      <HeaderWrapper
+        onClick={() => {
+          history.push(`/`);
+        }}
+      >
+        <FiArrowLeft style={IconStyle} />
+        <Back>Back to home</Back>
+      </HeaderWrapper>
+      <Header singleTweet={singleTweet} />
+      <TweetContents singleTweet={singleTweet} />
+      <Divider />
+      <ActionBar singleTweet={singleTweet} />
+      <Divider />
+    </Wrapper>
+  ) : (
+    <LoadingWrapper>
+      <Loading />
+    </LoadingWrapper>
   );
 };
 
@@ -78,6 +81,12 @@ const HeaderWrapper = styled.div`
 
 const Back = styled.h1`
   margin: 10px 10px;
+`;
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  top: 375px;
+  left: 375px;
 `;
 
 export default TweetDetails;

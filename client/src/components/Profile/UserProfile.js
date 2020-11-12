@@ -4,39 +4,42 @@ import { FiMapPin, FiCalendar } from "react-icons/fi";
 
 import { CurrentUserContext } from "../CurrentUserContext";
 import UserProfileFeed from "./UserProfileFeed";
+import Loading from "../Loading";
 
 const UserProfile = () => {
   const { currentUser } = useContext(CurrentUserContext);
 
-  return (
-    currentUser && (
-      <Wrapper>
-        <Header src={currentUser.bannerSrc} />
-        <Body>
-          <Avatar src={currentUser.avatarSrc} />
-          <DisplayName>{currentUser.displayName}</DisplayName>
-          <Handle>@{currentUser.handle}</Handle>
-          <Bio>{currentUser.bio}</Bio>
-          <DetailsWrapper>
-            <Location>
-              <FiMapPin /> {currentUser.location}
-            </Location>
-            <Joined>
-              <FiCalendar /> {currentUser.joined}
-            </Joined>
-          </DetailsWrapper>
-          <FollowDetails>
-            <Following>
-              <strong>{currentUser.numFollowing}</strong> Following
-            </Following>
-            <Followers>
-              <strong>{currentUser.numFollowers}</strong> Followers
-            </Followers>
-          </FollowDetails>
-          <UserProfileFeed />
-        </Body>
-      </Wrapper>
-    )
+  return currentUser ? (
+    <Wrapper>
+      <Header src={currentUser.bannerSrc} />
+      <Body>
+        <Avatar src={currentUser.avatarSrc} />
+        <DisplayName>{currentUser.displayName}</DisplayName>
+        <Handle>@{currentUser.handle}</Handle>
+        <Bio>{currentUser.bio}</Bio>
+        <DetailsWrapper>
+          <Location>
+            <FiMapPin /> {currentUser.location}
+          </Location>
+          <Joined>
+            <FiCalendar /> {currentUser.joined}
+          </Joined>
+        </DetailsWrapper>
+        <FollowDetails>
+          <Following>
+            <strong>{currentUser.numFollowing}</strong> Following
+          </Following>
+          <Followers>
+            <strong>{currentUser.numFollowers}</strong> Followers
+          </Followers>
+        </FollowDetails>
+        <UserProfileFeed />
+      </Body>
+    </Wrapper>
+  ) : (
+    <LoadingWrapper>
+      <Loading />
+    </LoadingWrapper>
   );
 };
 
@@ -103,5 +106,11 @@ const Following = styled.div`
 `;
 
 const Followers = styled.div``;
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  top: 375px;
+  left: 375px;
+`;
 
 export default UserProfile;
