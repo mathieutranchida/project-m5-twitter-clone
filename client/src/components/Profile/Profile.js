@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { useParams } from "react-router";
 import ProfileFeed from "./ProfileFeed";
+import Loading from "../Loading";
+import COLORS from "../../constants";
 
 const Profile = () => {
   const [getProfile, setGetProfile] = React.useState(null);
@@ -19,43 +21,63 @@ const Profile = () => {
       });
   }, []);
 
-  return (
-    getProfile && (
-      <Wrapper>
-        <Header src={getProfile.bannerSrc} />
-        <Body>
-          <Avatar src={getProfile.avatarSrc} />
-          <DisplayName>{getProfile.displayName}</DisplayName>
+  return getProfile ? (
+    <Wrapper>
+      <Header src={getProfile.bannerSrc} />
+      <Body>
+        <Avatar src={getProfile.avatarSrc} />
+        <DisplayName>{getProfile.displayName}</DisplayName>
+        <HandleWrapper>
           <Handle>@{getProfile.handle}</Handle>
-          <Bio>{getProfile.bio}</Bio>
-          <DetailsWrapper>
-            <Location>
-              <FiMapPin /> {getProfile.location}
-            </Location>
-            <Joined>
-              <FiCalendar /> {getProfile.joined}
-            </Joined>
-          </DetailsWrapper>
-          <FollowDetails>
-            <Following>
-              <strong>{getProfile.numFollowing}</strong> Following
-            </Following>
-            <Followers>
-              <strong>{getProfile.numFollowers}</strong> Followers
-            </Followers>
-          </FollowDetails>
-        </Body>
-        <ProfileFeedWrapper>
-          <ProfileFeed />
-        </ProfileFeedWrapper>
-      </Wrapper>
-    )
+          <FollowsYou>Follows you</FollowsYou>
+          <FollowingBtn>Following</FollowingBtn>
+        </HandleWrapper>
+        <Bio>{getProfile.bio}</Bio>
+        <DetailsWrapper>
+          <Location>
+            <FiMapPin /> {getProfile.location}
+          </Location>
+          <Joined>
+            <FiCalendar /> {getProfile.joined}
+          </Joined>
+        </DetailsWrapper>
+        <FollowDetails>
+          <Following>
+            <strong>{getProfile.numFollowing}</strong> Following
+          </Following>
+          <Followers>
+            <strong>{getProfile.numFollowers}</strong> Followers
+          </Followers>
+        </FollowDetails>
+      </Body>
+      <ProfileFeedWrapper>
+        <ProfileFeed />
+      </ProfileFeedWrapper>
+    </Wrapper>
+  ) : (
+    <LoadingWrapper>
+      <Loading />
+    </LoadingWrapper>
   );
 };
 
 const Wrapper = styled.div`
   overflow-x: none;
   max-width: 800px;
+`;
+
+const FollowingBtn = styled.button`
+  font-size: 15pt;
+  color: white;
+  padding: 15px 20px;
+  font-weight: bold;
+  border-radius: 500px;
+  border: none;
+  background-color: ${COLORS.primary};
+  position: relative;
+  top: -130px;
+  left: 440px;
+  cursor: pointer;
 `;
 
 const Header = styled.img`
@@ -121,6 +143,27 @@ const Followers = styled.div``;
 const ProfileFeedWrapper = styled.div`
   position: relative;
   top: -110px;
+`;
+
+const HandleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const FollowsYou = styled.div`
+  margin-left: 10px;
+  background-color: grey;
+  font-style: italic;
+  color: white;
+  font-size: 10pt;
+  padding: 1px 5px;
+  border-radius: 7px;
+`;
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  top: 375px;
+  left: 375px;
 `;
 
 export default Profile;
