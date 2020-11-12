@@ -3,30 +3,31 @@ import styled from "styled-components";
 
 import { FiSun } from "react-icons/fi";
 
-const IconStyle = {
-  height: "50px",
-  width: "50px",
-  paddingRight: "15px",
-};
-
-const spinTransition = {
-  loop: "Infinity",
-  duration: 1,
-  ease: "linear",
-};
-
 const Loading = () => {
   return (
     <Wrapper>
-      <FiSun
-        style={IconStyle}
-        animate={{ rotate: 360 }}
-        transition={spinTransition}
-      />
+      <StyledFiSun />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div``;
+
+const StyledFiSun = styled(FiSun)`
+  height: 50px;
+  width: 50px;
+  animation-duration: 1500ms;
+  animation-name: spin;
+  animation-iteration-count: infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 export default Loading;

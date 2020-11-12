@@ -18,7 +18,11 @@ const TweetFeed = ({ tweet }) => {
       }}
       tabIndex="0"
       aria-label="view tweet"
-      // onKeyDown={this.Enter}
+      onKeyDown={(ev) => {
+        if (ev.key === "Enter") {
+          return history.push(`/tweet/${tweet.id}`);
+        }
+      }}
     >
       {tweet.retweetFrom && <RemeowedHeader tweet={tweet} />}
       <Wrapper>

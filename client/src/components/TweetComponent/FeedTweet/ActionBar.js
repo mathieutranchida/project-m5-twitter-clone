@@ -18,7 +18,10 @@ const ActionBar = ({ tweet }) => {
     numOfRetweets,
     handleToggleLike,
     handleToggleRetweet,
+    homefeed,
   } = useContext(TweetContext);
+
+  console.log(homefeed);
 
   return (
     <Wrapper>

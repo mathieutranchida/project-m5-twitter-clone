@@ -17,6 +17,12 @@ const Header = ({ tweet }) => {
             }}
             tabIndex="0"
             aria-label="view author's profile"
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
+                ev.stopPropagation();
+                history.push(`/${tweet.author.handle}`);
+              }
+            }}
           >
             {tweet.author.displayName}
           </DisplayName>
