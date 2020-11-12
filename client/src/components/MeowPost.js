@@ -3,35 +3,52 @@ import styled from "styled-components";
 import COLORS from "../constants";
 
 import { CurrentUserContext } from "./CurrentUserContext";
+import { TweetContext } from "./TweetComponent/TweetContext";
 
 const MeowPost = () => {
   const { currentUser } = useContext(CurrentUserContext);
+  const { toggleFeed, setToggleFeed } = useContext(TweetContext);
+  const [charCount, setCharCount] = useState(280);
+  const [tweetContent, setTweetContent] = useState("");
 
-  useEffect(() => {
-    fetch("`/api/tweet`", {
+  const handleCharCount = (ev) => {
+    // setCharCount(charCount - ev.target.length);
+  };
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    fetch(`/api/tweet`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify(),
+      body: JSON.stringify({ status: tweetContent }),
     })
-      .then(function (res) {
+      .then((res) => {
         console.log(res);
+        setToggleFeed(!toggleFeed);
       })
-      .catch(function (res) {
+      .catch((res) => {
         console.log(res);
       });
-  }, []);
+  };
 
   return (
     <Wrapper>
       {currentUser && <Avatar src={currentUser.avatarSrc} />}
-      <TextWrapper>
-        <TextArea className="message" placeholder={"What's happening?"} />
+      <TextWrapper onSubmit={handleSubmit}>
+        <TextArea
+          className="message"
+          placeholder={"What's happening?"}
+          value={tweetContent}
+          onChange={(ev) => {
+            setTweetContent(ev.target.value);
+          }}
+        />
         <BottomWrapper>
           <WordCounter>280</WordCounter>
-          <SendBtn>Meow</SendBtn>
+          <SendBtn type="submit">Meow</SendBtn>
         </BottomWrapper>
       </TextWrapper>
     </Wrapper>
@@ -52,7 +69,7 @@ const Avatar = styled.img`
   padding: 0px 10px;
 `;
 
-const TextWrapper = styled.div``;
+const TextWrapper = styled.form``;
 
 const TextArea = styled.textarea`
   width: 685px;

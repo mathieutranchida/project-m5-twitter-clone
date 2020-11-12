@@ -11,6 +11,15 @@ const IconStyle = {
 };
 
 const ActionBar = ({ tweet }) => {
+  const {
+    isLiked,
+    isRetweeted,
+    numOfLikes,
+    numOfRetweets,
+    handleToggleLike,
+    handleToggleRetweet,
+  } = useContext(TweetContext);
+
   return (
     <Wrapper>
       <ActionDiv>
@@ -21,7 +30,10 @@ const ActionBar = ({ tweet }) => {
       <ActionDiv>
         <Stats>{tweet.numRetweets > 0 ?? tweet.numRetweets}</Stats>
         <Action color="rgb(23, 191, 99)" size={40}>
-          <FiRepeat style={IconStyle} />
+          <FiRepeat
+            style={IconStyle}
+            color={isRetweeted ? "rgb(23, 191,99)" : undefined}
+          />
         </Action>
       </ActionDiv>
       <ActionDiv>
