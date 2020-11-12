@@ -36,35 +36,58 @@ export const TweetProvider = ({ children }) => {
   }, []);
 
   const handleToggleLike = (tweetId) => {
-    console.log(homefeed);
-    setHomefeed({
-      ...homefeed,
-      tweetsById: {
-        ...homefeed.tweetsById,
-        [tweetId]: {
-          ...homefeed.tweetsById[tweetId],
-          numLikes: homefeed.tweetsById[tweetId].numLikes + 1,
+    if (!isLiked) {
+      setHomefeed({
+        ...homefeed,
+        tweetsById: {
+          ...homefeed.tweetsById,
+          [tweetId]: {
+            ...homefeed.tweetsById[tweetId],
+            numLikes: homefeed.tweetsById[tweetId].numLikes + 1,
+          },
         },
-      },
-    });
-    // setIsLiked(() => {
-    //   return !isLiked;
-    // });
-    // if (isLiked == true) {
-    //   setNumOfLikes(numOfLikes - 1);
-    // } else if (isLiked == false) {
-    //   setNumOfLikes(numOfLikes + 1);
-    // }
+      });
+      setIsLiked(true);
+    } else if (isLiked) {
+      setHomefeed({
+        ...homefeed,
+        tweetsById: {
+          ...homefeed.tweetsById,
+          [tweetId]: {
+            ...homefeed.tweetsById[tweetId],
+            numLikes: homefeed.tweetsById[tweetId].numLikes - 1,
+          },
+        },
+      });
+      setIsLiked(false);
+    }
   };
 
-  const handleToggleRetweet = () => {
-    setIsRetweeted(() => {
-      return !isRetweeted;
-    });
-    if (isRetweeted == true) {
-      setNumOfRetweets(numOfRetweets - 1);
-    } else if (isRetweeted == false) {
-      setNumOfRetweets(numOfRetweets + 1);
+  const handleToggleRetweet = (tweetId) => {
+    if (!isRetweeted) {
+      setHomefeed({
+        ...homefeed,
+        tweetsById: {
+          ...homefeed.tweetsById,
+          [tweetId]: {
+            ...homefeed.tweetsById[tweetId],
+            numRetweets: homefeed.tweetsById[tweetId].numRetweets + 1,
+          },
+        },
+      });
+      setIsRetweeted(true);
+    } else if (isRetweeted) {
+      setHomefeed({
+        ...homefeed,
+        tweetsById: {
+          ...homefeed.tweetsById,
+          [tweetId]: {
+            ...homefeed.tweetsById[tweetId],
+            numRetweets: homefeed.tweetsById[tweetId].numRetweets - 1,
+          },
+        },
+      });
+      setIsRetweeted(false);
     }
   };
 

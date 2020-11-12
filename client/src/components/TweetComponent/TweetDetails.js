@@ -7,7 +7,6 @@ import Header from "./BigTweet/Header";
 import TweetContents from "./BigTweet/TweetContent";
 import ActionBar from "./BigTweet/ActionBar";
 import { FiArrowLeft } from "react-icons/fi";
-import { TweetContext } from "./TweetContext";
 import Loading from "../Loading";
 
 const IconStyle = {

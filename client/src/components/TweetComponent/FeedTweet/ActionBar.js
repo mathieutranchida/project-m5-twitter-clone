@@ -29,7 +29,14 @@ const ActionBar = ({ tweet }) => {
       </ActionDiv>
       <ActionDiv>
         <Stats>{tweet.numRetweets > 0 && tweet.numRetweets}</Stats>
-        <Action color="rgb(23, 191, 99)" size={40}>
+        <Action
+          color="rgb(23, 191, 99)"
+          size={40}
+          onClick={(ev) => {
+            ev.stopPropagation();
+            handleToggleRetweet(tweet.id);
+          }}
+        >
           <FiRepeat
             style={IconStyle}
             color={isRetweeted ? "rgb(23, 191,99)" : undefined}

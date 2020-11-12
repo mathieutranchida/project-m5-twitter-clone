@@ -10,7 +10,6 @@ const iconStyle = {
 };
 
 const RemeowedHeader = ({ tweet }) => {
-  console.log(tweet.retweetFrom);
   return (
     <Wrapper>
       <FiRepeat style={iconStyle} />
@@ -19,11 +18,16 @@ const RemeowedHeader = ({ tweet }) => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 15px 0px 0px 25px;
+`;
 
 const Text = styled.div`
   font-size: 11pt;
   color: grey;
+  margin-left: 10px;
 `;
 
 export default RemeowedHeader;
