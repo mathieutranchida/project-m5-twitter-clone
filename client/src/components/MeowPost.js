@@ -11,12 +11,9 @@ const MeowPost = () => {
   const [charCount, setCharCount] = useState(280);
   const [tweetContent, setTweetContent] = useState("");
 
-  const handleCharCount = (ev) => {
-    // setCharCount(charCount - ev.target.length);
-  };
-
   const handleSubmit = (ev) => {
     ev.preventDefault();
+
     fetch(`/api/tweet`, {
       headers: {
         Accept: "application/json",
@@ -44,10 +41,11 @@ const MeowPost = () => {
           value={tweetContent}
           onChange={(ev) => {
             setTweetContent(ev.target.value);
+            setCharCount(280 - ev.target.value.length);
           }}
         />
         <BottomWrapper>
-          <WordCounter>280</WordCounter>
+          <WordCounter>Characters left: {charCount}</WordCounter>
           <SendBtn type="submit">Meow</SendBtn>
         </BottomWrapper>
       </TextWrapper>
