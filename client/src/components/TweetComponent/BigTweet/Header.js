@@ -19,6 +19,7 @@ const Header = ({ singleTweet }) => {
 
 const Wrapper = styled.header`
   display: flex;
+  padding: 15px;
 `;
 
 const Avatar = styled.img`

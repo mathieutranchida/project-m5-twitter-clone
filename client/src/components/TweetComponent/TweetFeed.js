@@ -15,6 +15,9 @@ const TweetFeed = ({ tweet }) => {
       onClick={() => {
         history.push(`/tweet/${tweet.id}`);
       }}
+      tabIndex="0"
+      aria-label="view tweet"
+      // onKeyDown={this.Enter}
     >
       <Wrapper>
         <Avatar tweet={tweet} />
@@ -33,11 +36,12 @@ const TweetFeed = ({ tweet }) => {
 const Wrapper = styled.div`
   background: white;
   width: 100%;
-  padding: 16px;
+  padding: 16px 0px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Ubuntu, "Helvetica Neue", sans-serif;
   display: flex;
   align-items: flex-start;
+  border-right: 1px grey solid;
 `;
 
 const SecondaryDiv = styled.div``;

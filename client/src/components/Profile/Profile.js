@@ -44,8 +44,10 @@ const Profile = () => {
               <strong>{getProfile.numFollowers}</strong> Followers
             </Followers>
           </FollowDetails>
-          <ProfileFeed />
         </Body>
+        <ProfileFeedWrapper>
+          <ProfileFeed />
+        </ProfileFeedWrapper>
       </Wrapper>
     )
   );
@@ -53,6 +55,7 @@ const Profile = () => {
 
 const Wrapper = styled.div`
   overflow-x: none;
+  max-width: 800px;
 `;
 
 const Header = styled.img`
@@ -63,7 +66,10 @@ const Header = styled.img`
 const Body = styled.div`
   position: relative;
   top: -110px;
-  margin: 0px 25px;
+  padding-left: 15px;
+  border-right: 1px solid grey;
+  border-bottom: 10px solid grey;
+  padding-bottom: 15px;
 `;
 
 const Avatar = styled.img`
@@ -111,5 +117,10 @@ const Following = styled.div`
 `;
 
 const Followers = styled.div``;
+
+const ProfileFeedWrapper = styled.div`
+  position: relative;
+  top: -110px;
+`;
 
 export default Profile;

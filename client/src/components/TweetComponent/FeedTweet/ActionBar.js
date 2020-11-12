@@ -43,8 +43,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
   height: 48px;
+  margin-right: 1px solid grey;
 `;
 
 const ActionDiv = styled.div`

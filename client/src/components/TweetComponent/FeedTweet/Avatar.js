@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0px 10px;
+  padding: 0px 15px;
 `;
 
 const Avatar = styled.img`

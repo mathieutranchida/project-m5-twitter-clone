@@ -33,6 +33,8 @@ const ProfileFeed = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin-right: 1px solid grey;
+`;
 
 export default ProfileFeed;

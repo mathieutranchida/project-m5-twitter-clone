@@ -20,11 +20,12 @@ const Wrapper = styled.div`
 
 const Description = styled.div`
   font-size: 18px;
-  padding: 0px 0px 10px 0px;
+  padding: 0px 10px 10px 0px;
 `;
 
 const Image = styled.img`
   max-height: 50vh;
+  max-width: 700px;
   border-radius: 20px;
 `;
 

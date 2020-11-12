@@ -26,7 +26,7 @@ const MeowPost = () => {
 
   return (
     <Wrapper>
-      <Avatar src={currentUser.avatarSrc} />
+      {currentUser && <Avatar src={currentUser.avatarSrc} />}
       <TextWrapper>
         <TextArea className="message" placeholder={"What's happening?"} />
         <BottomWrapper>
@@ -41,7 +41,6 @@ const MeowPost = () => {
 const Wrapper = styled.div`
   display: flex;
   border-top: 1px grey solid;
-  border-right: 1px grey solid;
   border-bottom: 10px grey solid;
   padding: 15px;
 `;
@@ -56,7 +55,7 @@ const Avatar = styled.img`
 const TextWrapper = styled.div``;
 
 const TextArea = styled.textarea`
-  width: 750px;
+  width: 685px;
   height: 150px;
   border: none;
   outline: none;

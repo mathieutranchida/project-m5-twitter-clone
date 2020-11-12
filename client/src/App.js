@@ -17,26 +17,28 @@ const App = () => {
       <GlobalStyles />
       <Wrapper>
         <Sidebar />
-        <Switch>
-          <Route exact path="/">
-            <HomeFeed />
-          </Route>
-          <Route path="/notifications">
-            <Notifications />
-          </Route>
-          <Route path="/bookmarks">
-            <Bookmarks />
-          </Route>
-          <Route path="/tweet/:tweetId">
-            <TweetDetails />
-          </Route>
-          <Route path="/treasurymog">
-            <UserProfile />
-          </Route>
-          <Route path="/:profileId">
-            <Profile />
-          </Route>
-        </Switch>
+        <Main>
+          <Switch>
+            <Route exact path="/">
+              <HomeFeed />
+            </Route>
+            <Route path="/notifications">
+              <Notifications />
+            </Route>
+            <Route path="/bookmarks">
+              <Bookmarks />
+            </Route>
+            <Route path="/tweet/:tweetId">
+              <TweetDetails />
+            </Route>
+            <Route path="/treasurymog">
+              <UserProfile />
+            </Route>
+            <Route path="/:profileId">
+              <Profile />
+            </Route>
+          </Switch>
+        </Main>
       </Wrapper>
     </BrowserRouter>
   );
@@ -44,6 +46,10 @@ const App = () => {
 
 const Wrapper = styled.div`
   display: flex;
+`;
+
+const Main = styled.div`
+  margin-left: 250px;
 `;
 
 export default App;

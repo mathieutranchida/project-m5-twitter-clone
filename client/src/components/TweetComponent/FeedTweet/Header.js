@@ -12,6 +12,8 @@ const Header = ({ tweet }) => {
               event.stopPropagation();
               history.push(`/${tweet.author.handle}`);
             }}
+            tabIndex="0"
+            aria-label="view author's profile"
           >
             {tweet.author.displayName}
           </DisplayName>

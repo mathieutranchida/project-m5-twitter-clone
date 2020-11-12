@@ -43,6 +43,11 @@ const Sidebar = () => {
 const Wrapper = styled.div`
   padding: 25px;
   border-right: 1px solid grey;
+  border-left: 1px solid grey;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
 `;
 
 const LogoWrapper = styled.a``;

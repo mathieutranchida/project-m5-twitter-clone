@@ -23,10 +23,13 @@ const HomeFeed = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 800px;
+  border-right: 1px grey solid;
+`;
+
 const Title = styled.h1`
-  padding-left: 35px;
-  margin-top: 35px;
+  margin: 5px 25px;
 `;
 
 const MeowForm = styled.div`

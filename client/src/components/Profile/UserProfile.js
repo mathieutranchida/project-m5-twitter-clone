@@ -9,37 +9,41 @@ const UserProfile = () => {
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
-    <Wrapper>
-      <Header src={currentUser.bannerSrc} />
-      <Body>
-        <Avatar src={currentUser.avatarSrc} />
-        <DisplayName>{currentUser.displayName}</DisplayName>
-        <Handle>@{currentUser.handle}</Handle>
-        <Bio>{currentUser.bio}</Bio>
-        <DetailsWrapper>
-          <Location>
-            <FiMapPin /> {currentUser.location}
-          </Location>
-          <Joined>
-            <FiCalendar /> {currentUser.joined}
-          </Joined>
-        </DetailsWrapper>
-        <FollowDetails>
-          <Following>
-            <strong>{currentUser.numFollowing}</strong> Following
-          </Following>
-          <Followers>
-            <strong>{currentUser.numFollowers}</strong> Followers
-          </Followers>
-        </FollowDetails>
-        <UserProfileFeed />
-      </Body>
-    </Wrapper>
+    currentUser && (
+      <Wrapper>
+        <Header src={currentUser.bannerSrc} />
+        <Body>
+          <Avatar src={currentUser.avatarSrc} />
+          <DisplayName>{currentUser.displayName}</DisplayName>
+          <Handle>@{currentUser.handle}</Handle>
+          <Bio>{currentUser.bio}</Bio>
+          <DetailsWrapper>
+            <Location>
+              <FiMapPin /> {currentUser.location}
+            </Location>
+            <Joined>
+              <FiCalendar /> {currentUser.joined}
+            </Joined>
+          </DetailsWrapper>
+          <FollowDetails>
+            <Following>
+              <strong>{currentUser.numFollowing}</strong> Following
+            </Following>
+            <Followers>
+              <strong>{currentUser.numFollowers}</strong> Followers
+            </Followers>
+          </FollowDetails>
+          <UserProfileFeed />
+        </Body>
+      </Wrapper>
+    )
   );
 };
 
 const Wrapper = styled.div`
   overflow-x: none;
+  max-width: 800px;
+  margin-right: 1px solid grey;
 `;
 
 const Header = styled.img`
@@ -50,7 +54,8 @@ const Header = styled.img`
 const Body = styled.div`
   position: relative;
   top: -110px;
-  margin: 0px 25px;
+  margin-right: 1px solid grey;
+  padding: 15px;
 `;
 
 const Avatar = styled.img`

@@ -16,7 +16,7 @@ const TweetContents = ({ singleTweet }) => {
 };
 
 const Wrapper = styled.div`
-  padding: 10px;
+  padding: 15px;
 `;
 
 const Description = styled.div`
