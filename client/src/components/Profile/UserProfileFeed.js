@@ -15,7 +15,7 @@ const ProfileFeed = () => {
       .then((data) => {
         setGetProfileFeed(data);
       });
-  });
+  }, []);
 
   let tweets = [];
   if (getProfileFeed) {

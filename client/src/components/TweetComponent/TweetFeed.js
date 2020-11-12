@@ -6,6 +6,7 @@ import Avatar from "./FeedTweet/Avatar";
 import Header from "./FeedTweet/Header";
 import TweetContents from "./FeedTweet/TweetContent";
 import ActionBar from "./FeedTweet/ActionBar";
+import RemeowedHeader from "./FeedTweet/RemeowedHeader";
 
 import { TweetContext } from "./TweetContext";
 
@@ -19,6 +20,7 @@ const TweetFeed = ({ tweet }) => {
       aria-label="view tweet"
       // onKeyDown={this.Enter}
     >
+      {tweet.retweetFrom && <RemeowedHeader tweet={tweet} />}
       <Wrapper>
         <Avatar tweet={tweet} />
         <SecondaryDiv>

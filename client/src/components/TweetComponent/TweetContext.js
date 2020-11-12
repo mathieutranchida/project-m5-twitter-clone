@@ -35,15 +35,26 @@ export const TweetProvider = ({ children }) => {
       });
   }, []);
 
-  const handleToggleLike = () => {
-    setIsLiked(() => {
-      return !isLiked;
+  const handleToggleLike = (tweetId) => {
+    console.log(homefeed);
+    setHomefeed({
+      ...homefeed,
+      tweetsById: {
+        ...homefeed.tweetsById,
+        [tweetId]: {
+          ...homefeed.tweetsById[tweetId],
+          numLikes: homefeed.tweetsById[tweetId].numLikes + 1,
+        },
+      },
     });
-    if (isLiked == true) {
-      setNumOfLikes(numOfLikes - 1);
-    } else if (isLiked == false) {
-      setNumOfLikes(numOfLikes + 1);
-    }
+    // setIsLiked(() => {
+    //   return !isLiked;
+    // });
+    // if (isLiked == true) {
+    //   setNumOfLikes(numOfLikes - 1);
+    // } else if (isLiked == false) {
+    //   setNumOfLikes(numOfLikes + 1);
+    // }
   };
 
   const handleToggleRetweet = () => {

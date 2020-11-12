@@ -28,7 +28,7 @@ const ActionBar = ({ tweet }) => {
         </Action>
       </ActionDiv>
       <ActionDiv>
-        <Stats>{tweet.numRetweets > 0 ?? tweet.numRetweets}</Stats>
+        <Stats>{tweet.numRetweets > 0 && tweet.numRetweets}</Stats>
         <Action color="rgb(23, 191, 99)" size={40}>
           <FiRepeat
             style={IconStyle}
@@ -36,8 +36,13 @@ const ActionBar = ({ tweet }) => {
           />
         </Action>
       </ActionDiv>
-      <ActionDiv>
-        <Stats>{tweet.numLikes > 0 ?? tweet.numLikes}</Stats>
+      <ActionDiv
+        onClick={(ev) => {
+          ev.stopPropagation();
+          handleToggleLike(tweet.id);
+        }}
+      >
+        <Stats>{tweet.numLikes > 0 && tweet.numLikes}</Stats>
         <Action color="rgb(224, 36, 94)" size={40}>
           <FiHeart style={IconStyle} />
         </Action>
@@ -59,7 +64,8 @@ const Wrapper = styled.div`
   margin-right: 1px solid grey;
 `;
 
-const ActionDiv = styled.div`
+const ActionDiv = styled.button`
+  all: unset;
   display: flex;
   align-items: center;
 `;
