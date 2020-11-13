@@ -31,8 +31,6 @@ const ActionBar = ({ tweet }) => {
       : null
   );
 
-  console.log(tweet);
-
   const handleLike = () => {
     fetch(`/api/tweet/${tweet.id}/like`, {
       headers: {
@@ -54,6 +52,42 @@ const ActionBar = ({ tweet }) => {
       });
   };
 
+  const [retweetInfo, setRetweetInfo] = React.useState(
+    tweet
+      ? {
+          isRetweeted: tweet.isRetweeted,
+          numRetweets: tweet.numRetweets,
+        }
+      : null
+  );
+
+  const handleRetweet = () => {
+    fetch(`/api/tweet/${tweet.id}/retweet`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify({ retweet: !retweetInfo.isRetweeted }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        if (likeInfo.isLiked) {
+          setRetweetInfo({
+            retweetInfo: false,
+            numRetweets: retweetInfo.numRetweets - 1,
+          });
+        } else {
+          setRetweetInfo({
+            retweetInfo: true,
+            numRetweets: retweetInfo.numRetweets + 1,
+          });
+        }
+      });
+  };
+
   return (
     <>
       {likeInfo ? (
@@ -70,7 +104,7 @@ const ActionBar = ({ tweet }) => {
               size={40}
               onClick={(ev) => {
                 ev.stopPropagation();
-                // handleToggleRetweet(tweet.id);
+                handleRetweet();
               }}
             >
               <FiRepeat
@@ -82,13 +116,15 @@ const ActionBar = ({ tweet }) => {
           <ActionDiv
             onClick={(ev) => {
               ev.stopPropagation();
-              console.log("clicked");
               handleLike();
             }}
           >
             <Stats>{likeInfo.numLikes > 0 && likeInfo.numLikes}</Stats>
             <Action color="rgb(224, 36, 94)" size={40}>
-              <FiHeart style={IconStyle} />
+              <FiHeart
+                style={IconStyle}
+                color={likeInfo.isLiked ? "red" : undefined}
+              />
             </Action>
           </ActionDiv>
           <ActionDiv>

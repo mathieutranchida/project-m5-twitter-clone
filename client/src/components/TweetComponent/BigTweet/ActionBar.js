@@ -10,7 +10,37 @@ const IconStyle = {
   width: "20px",
 };
 
-const ActionBar = () => {
+const ActionBar = ({ singleTweet }) => {
+  const [likeInfo, setLikeInfo] = React.useState(
+    singleTweet
+      ? {
+          isLiked: singleTweet.isLiked,
+          numLikes: singleTweet.numLikes,
+        }
+      : null
+  );
+
+  const handleLike = () => {
+    fetch(`/api/tweet/${singleTweet.id}/like`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify({ like: !likeInfo.isLiked }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        if (likeInfo.isLiked) {
+          setLikeInfo({ isLiked: false, numLikes: likeInfo.numLikes - 1 });
+        } else {
+          setLikeInfo({ isLiked: true, numLikes: likeInfo.numLikes + 1 });
+        }
+      });
+  };
+
   return (
     <Wrapper>
       <ActionDiv>
@@ -24,10 +54,18 @@ const ActionBar = () => {
           <FiRepeat style={IconStyle} />
         </Action>
       </ActionDiv>
-      <ActionDiv>
-        <Stats></Stats>
+      <ActionDiv
+        onClick={(ev) => {
+          ev.stopPropagation();
+          handleLike();
+        }}
+      >
+        <Stats>{likeInfo.numLikes > 0 && likeInfo.numLikes}</Stats>
         <Action color="rgb(224, 36, 94)" size={40}>
-          <FiHeart style={IconStyle} />
+          <FiHeart
+            style={IconStyle}
+            color={likeInfo.isLiked ? "red" : undefined}
+          />
         </Action>
       </ActionDiv>
       <ActionDiv>
