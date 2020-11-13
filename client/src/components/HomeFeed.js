@@ -30,9 +30,11 @@ const HomeFeed = () => {
     <Wrapper>
       <Title>Home</Title>
       <MeowPost />
-      {tweets.map((tweet, index) => {
-        return <TweetFeed tweet={tweet} />;
-      })}
+      {tweets
+        .map((tweet, index) => {
+          return <TweetFeed tweet={tweet} />;
+        })
+        .reverse()}
     </Wrapper>
   );
 };

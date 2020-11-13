@@ -69,6 +69,7 @@ const MeowPost = () => {
           <SendBtn
             disabled={charCount === 280 || charCount < 0 ? true : false}
             type="submit"
+            onClick={(inputRef.current.value = "")}
           >
             Meow
           </SendBtn>
