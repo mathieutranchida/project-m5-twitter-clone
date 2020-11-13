@@ -50,8 +50,27 @@ const MeowPost = () => {
           }}
         />
         <BottomWrapper>
-          <WordCounter>Characters left: {charCount}</WordCounter>
-          <SendBtn type="submit">Meow</SendBtn>
+          {charCount > 55 && (
+            <WordCounterGrey>Characters left: {charCount}</WordCounterGrey>
+          )}
+          {charCount <= 55 && charCount > 0 && (
+            <WordCounterYellow color="yellow">
+              Characters left: {charCount}
+            </WordCounterYellow>
+          )}
+          {charCount <= 0 && (
+            <WordCounterRed color="red">
+              Characters left: {charCount}
+            </WordCounterRed>
+          )}
+          <SendBtn
+            disabled={charCount === 280 || charCount < 0 ? true : false}
+            type="submit"
+          >
+            Meow
+          </SendBtn>
+          {/* {charCount === 280 && <SendBtnDsb type="submit">Meow</SendBtnDsb>}
+          {charCount < 280 && <SendBtn type="submit">Meow</SendBtn>} */}
         </BottomWrapper>
       </TextWrapper>
     </Wrapper>
@@ -88,11 +107,25 @@ const BottomWrapper = styled.div`
   text-align: right;
 `;
 
-const WordCounter = styled.label`
+const WordCounterGrey = styled.label`
   margin-right: 20px;
   font-style: italic;
-  color: grey;
   font-size: 10pt;
+  color: grey;
+`;
+
+const WordCounterYellow = styled.label`
+  margin-right: 20px;
+  font-style: italic;
+  font-size: 10pt;
+  color: orange;
+`;
+
+const WordCounterRed = styled.label`
+  margin-right: 20px;
+  font-style: italic;
+  font-size: 10pt;
+  color: red;
 `;
 
 const SendBtn = styled.button`
@@ -103,6 +136,10 @@ const SendBtn = styled.button`
   border: none;
   background-color: ${COLORS.primary};
   color: white;
+  cursor: pointer;
+  &:disabled {
+    background-color: grey;
+  }
 `;
 
 export default MeowPost;

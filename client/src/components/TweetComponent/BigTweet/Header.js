@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import history from "../../../history";
 
 import { TweetContext } from "../TweetContext";
 
@@ -9,7 +10,22 @@ const Header = ({ singleTweet }) => {
       <Wrapper>
         <Avatar src={singleTweet.author.avatarSrc} />
         <Name>
-          <DisplayName>{singleTweet.author.displayName}</DisplayName>
+          <DisplayName
+            onClick={(event) => {
+              event.stopPropagation();
+              history.push(`/${singleTweet.author.handle}`);
+            }}
+            tabIndex="0"
+            aria-label="view author's profile"
+            onKeyDown={(ev) => {
+              if (ev.key === "Enter") {
+                ev.stopPropagation();
+                history.push(`/${singleTweet.author.handle}`);
+              }
+            }}
+          >
+            {singleTweet.author.displayName}
+          </DisplayName>
           <Username>@{singleTweet.author.handle}</Username>
         </Name>
       </Wrapper>
@@ -29,10 +45,6 @@ const Avatar = styled.img`
 `;
 
 const Name = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding: 0px 16px;
 `;
 
@@ -40,6 +52,7 @@ const DisplayName = styled.div`
   font-size: 15px;
   line-height: 20px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 const Username = styled.div`

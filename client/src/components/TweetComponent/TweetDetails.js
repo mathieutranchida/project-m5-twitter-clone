@@ -45,6 +45,13 @@ const TweetDetails = () => {
         onClick={() => {
           history.push(`/`);
         }}
+        tabIndex="0"
+        aria-label="Back to home"
+        onKeyDown={(ev) => {
+          if (ev.key === "Enter") {
+            history.push(`/`);
+          }
+        }}
       >
         <FiArrowLeft style={IconStyle} />
         <Back>Back to home</Back>
