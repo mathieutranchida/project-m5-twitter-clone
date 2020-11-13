@@ -5,9 +5,14 @@ import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { CurrentUserContext } from "../CurrentUserContext";
 import UserProfileFeed from "./UserProfileFeed";
 import Loading from "../Loading";
+import ErrorWindow from "../ErrorWindow";
 
 const UserProfile = () => {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, status } = useContext(CurrentUserContext);
+
+  if (status === "error") {
+    return <ErrorWindow />;
+  }
 
   return currentUser ? (
     <Wrapper>

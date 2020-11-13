@@ -27,7 +27,7 @@ const Header = ({ tweet }) => {
             {tweet.author.displayName}
           </DisplayName>
           <Username>@{tweet.author.handle}</Username>
-          <Username>.</Username>
+          <Username>·</Username>
           <TimeStamp>{date}</TimeStamp>
         </Name>
       </Wrapper>

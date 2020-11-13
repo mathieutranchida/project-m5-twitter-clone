@@ -5,6 +5,7 @@ import TweetFeed from "./TweetComponent/TweetFeed";
 import MeowPost from "./MeowPost";
 import { TweetContext } from "./TweetComponent/TweetContext";
 import Loading from "./Loading";
+import ErrorWindow from "./ErrorWindow";
 
 const HomeFeed = () => {
   const { homefeed, status } = useContext(TweetContext);
@@ -15,6 +16,10 @@ const HomeFeed = () => {
         <Loading />
       </LoadingWrapper>
     );
+  }
+
+  if (status === "error") {
+    return <ErrorWindow />;
   }
 
   if (homefeed) {
@@ -36,6 +41,10 @@ const LoadingWrapper = styled.div`
   position: relative;
   top: 375px;
   left: 375px;
+`;
+
+const ErrorWrapper = styled.div`
+  width: 800px;
 `;
 
 const Wrapper = styled.div`

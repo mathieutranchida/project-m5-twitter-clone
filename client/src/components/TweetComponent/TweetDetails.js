@@ -8,6 +8,7 @@ import TweetContents from "./BigTweet/TweetContent";
 import ActionBar from "./BigTweet/ActionBar";
 import { FiArrowLeft } from "react-icons/fi";
 import Loading from "../Loading";
+import ErrorWindow from "../ErrorWindow";
 
 const IconStyle = {
   height: "30px",
@@ -18,6 +19,7 @@ const IconStyle = {
 
 const TweetDetails = () => {
   const [singleTweet, setSingleTweet] = React.useState(null);
+  const [status, setStatus] = React.useState(null);
 
   let { tweetId } = useParams();
 
@@ -29,8 +31,13 @@ const TweetDetails = () => {
       })
       .then((data) => {
         setSingleTweet(data.tweet);
-      });
+      })
+      .catch(() => setStatus("error"));
   }, []);
+
+  if (status === "error") {
+    return <ErrorWindow />;
+  }
 
   return singleTweet ? (
     <Wrapper>

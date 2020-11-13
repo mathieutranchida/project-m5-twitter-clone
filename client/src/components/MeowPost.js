@@ -4,12 +4,14 @@ import COLORS from "../constants";
 
 import { CurrentUserContext } from "./CurrentUserContext";
 import { TweetContext } from "./TweetComponent/TweetContext";
+import ErrorWindowPost from "./ErrorWindowPost";
 
 const MeowPost = () => {
   const { currentUser } = useContext(CurrentUserContext);
   const { toggleFeed, setToggleFeed } = useContext(TweetContext);
   const [charCount, setCharCount] = useState(280);
   const [tweetContent, setTweetContent] = useState("");
+  const [status, setStatus] = useState(null);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -23,13 +25,16 @@ const MeowPost = () => {
       body: JSON.stringify({ status: tweetContent }),
     })
       .then((res) => {
-        console.log(res);
         setToggleFeed(!toggleFeed);
       })
       .catch((res) => {
-        console.log(res);
+        setStatus("error");
       });
   };
+
+  if (status === "error") {
+    return <ErrorWindowPost />;
+  }
 
   return (
     <Wrapper>

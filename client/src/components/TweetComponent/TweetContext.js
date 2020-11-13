@@ -21,7 +21,8 @@ export const TweetProvider = ({ children }) => {
       .then((data) => {
         setHomefeed(data);
         setStatus("idle");
-      });
+      })
+      .catch(() => setStatus("error"));
   }, [toggleFeed]);
 
   useEffect(() => {
