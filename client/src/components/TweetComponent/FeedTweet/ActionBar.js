@@ -74,7 +74,7 @@ const ActionBar = ({ tweet }) => {
         return res.json();
       })
       .then(() => {
-        if (likeInfo.isLiked) {
+        if (retweetInfo.isRetweeted) {
           setRetweetInfo({
             retweetInfo: false,
             numRetweets: retweetInfo.numRetweets - 1,

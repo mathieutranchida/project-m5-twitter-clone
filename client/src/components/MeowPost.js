@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import COLORS from "../constants";
 
@@ -12,6 +12,7 @@ const MeowPost = () => {
   const [charCount, setCharCount] = useState(280);
   const [tweetContent, setTweetContent] = useState("");
   const [status, setStatus] = useState(null);
+  const inputRef = useRef(null);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -26,6 +27,7 @@ const MeowPost = () => {
     })
       .then((res) => {
         setToggleFeed(!toggleFeed);
+        inputRef.current.value = "";
       })
       .catch((res) => {
         setStatus("error");
@@ -48,6 +50,7 @@ const MeowPost = () => {
             setTweetContent(ev.target.value);
             setCharCount(280 - ev.target.value.length);
           }}
+          ref={inputRef}
         />
         <BottomWrapper>
           {charCount > 55 && (

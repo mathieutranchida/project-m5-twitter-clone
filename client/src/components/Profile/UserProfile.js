@@ -38,8 +38,15 @@ const UserProfile = () => {
             <strong>{currentUser.numFollowers}</strong> Followers
           </Followers>
         </FollowDetails>
-        <UserProfileFeed />
       </Body>
+      <SecondaryBody>
+        <TabsSelectionWrapper>
+          <TabSelected>Tweets</TabSelected>
+          <Tab>Media</Tab>
+          <Tab>Likes</Tab>
+        </TabsSelectionWrapper>
+        <UserProfileFeed />
+      </SecondaryBody>
     </Wrapper>
   ) : (
     <LoadingWrapper>
@@ -48,10 +55,29 @@ const UserProfile = () => {
   );
 };
 
+const TabsSelectionWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Tab = styled.div`
+  padding: 20px 0px;
+  width: 266px;
+  text-align: center;
+`;
+
+const TabSelected = styled.div`
+  border-bottom: 3px purple solid;
+  color: purple;
+  padding: 20px 0px;
+  width: 266px;
+  text-align: center;
+`;
+
 const Wrapper = styled.div`
   overflow-x: none;
   max-width: 800px;
-  margin-right: 1px solid grey;
+  border: 1px solid grey;
 `;
 
 const Header = styled.img`
@@ -63,7 +89,12 @@ const Body = styled.div`
   position: relative;
   top: -110px;
   margin-right: 1px solid grey;
-  padding: 15px;
+  padding: 15px 15px 5px 15px;
+`;
+
+const SecondaryBody = styled.div`
+  position: relative;
+  top: -110px;
 `;
 
 const Avatar = styled.img`

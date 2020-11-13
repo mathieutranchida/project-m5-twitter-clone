@@ -50,9 +50,16 @@ const Profile = () => {
           </Followers>
         </FollowDetails>
       </Body>
-      <ProfileFeedWrapper>
-        <ProfileFeed />
-      </ProfileFeedWrapper>
+      <SecondaryBody>
+        <TabsSelectionWrapper>
+          <TabSelected>Tweets</TabSelected>
+          <Tab>Media</Tab>
+          <Tab>Likes</Tab>
+        </TabsSelectionWrapper>
+        <ProfileFeedWrapper>
+          <ProfileFeed />
+        </ProfileFeedWrapper>
+      </SecondaryBody>
     </Wrapper>
   ) : (
     <LoadingWrapper>
@@ -64,6 +71,31 @@ const Profile = () => {
 const Wrapper = styled.div`
   overflow-x: none;
   max-width: 800px;
+  border: 1px solid grey;
+`;
+
+const SecondaryBody = styled.div`
+  position: relative;
+  top: -110px;
+`;
+
+const TabsSelectionWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Tab = styled.div`
+  padding: 20px 0px;
+  width: 266px;
+  text-align: center;
+`;
+
+const TabSelected = styled.div`
+  border-bottom: 3px purple solid;
+  color: purple;
+  padding: 20px 0px;
+  width: 266px;
+  text-align: center;
 `;
 
 const FollowingBtn = styled.button`
@@ -89,9 +121,7 @@ const Body = styled.div`
   position: relative;
   top: -110px;
   padding-left: 15px;
-  border-right: 1px solid grey;
-  border-bottom: 10px solid grey;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
 `;
 
 const Avatar = styled.img`
@@ -140,10 +170,7 @@ const Following = styled.div`
 
 const Followers = styled.div``;
 
-const ProfileFeedWrapper = styled.div`
-  position: relative;
-  top: -110px;
-`;
+const ProfileFeedWrapper = styled.div``;
 
 const HandleWrapper = styled.div`
   display: flex;
