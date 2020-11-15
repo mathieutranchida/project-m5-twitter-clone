@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import history from "../../../history";
-
-import { TweetContext } from "../TweetContext";
 
 const Header = ({ singleTweet }) => {
   return (

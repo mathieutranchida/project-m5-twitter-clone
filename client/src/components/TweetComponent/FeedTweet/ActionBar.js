@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FiMessageCircle, FiRepeat, FiHeart, FiUpload } from "react-icons/fi";
 
 import Action from "./Action";
-import { TweetContext } from "../TweetContext";
 
 const IconStyle = {
   height: "22px",
@@ -11,17 +10,6 @@ const IconStyle = {
 };
 
 const ActionBar = ({ tweet }) => {
-  // const {
-  //   isLiked,
-  //   isRetweeted,
-  //   numOfLikes,
-  //   numOfRetweets,
-  //   handleToggleLike,
-  //   handleToggleRetweet,
-  //   homefeed,
-  // } = useContext(TweetContext);
-  //const tweetId = tweet.id;
-
   const [likeInfo, setLikeInfo] = React.useState(
     tweet
       ? {

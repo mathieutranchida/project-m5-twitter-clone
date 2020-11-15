@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React from "react";
 
 const Notifications = () => {
   return <div>Notifications</div>;

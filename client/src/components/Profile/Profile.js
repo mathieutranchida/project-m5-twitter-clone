@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { useParams } from "react-router";

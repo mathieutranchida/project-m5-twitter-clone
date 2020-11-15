@@ -1,5 +1,4 @@
-import { fromByteArray } from "ipaddr.js";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import TweetFeed from "../TweetComponent/TweetFeed";
@@ -27,9 +26,11 @@ const ProfileFeed = () => {
   return (
     getProfileFeed && (
       <Wrapper>
-        {tweets.map((tweet, index) => {
-          return <TweetFeed tweet={tweet} />;
-        })}
+        {tweets
+          .map((tweet, index) => {
+            return <TweetFeed tweet={tweet} />;
+          })
+          .reverse()}
       </Wrapper>
     )
   );
