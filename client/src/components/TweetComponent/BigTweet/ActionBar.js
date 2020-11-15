@@ -41,6 +41,42 @@ const ActionBar = ({ singleTweet }) => {
       });
   };
 
+  const [retweetInfo, setRetweetInfo] = React.useState(
+    singleTweet
+      ? {
+          isRetweeted: singleTweet.isRetweeted,
+          numRetweets: singleTweet.numRetweets,
+        }
+      : null
+  );
+
+  const handleRetweet = () => {
+    fetch(`/api/tweet/${singleTweet.id}/retweet`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify({ retweet: !retweetInfo.isRetweeted }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        if (retweetInfo.isRetweeted) {
+          setRetweetInfo({
+            isRetweeted: false,
+            numRetweets: retweetInfo.numRetweets - 1,
+          });
+        } else {
+          setRetweetInfo({
+            isRetweeted: true,
+            numRetweets: retweetInfo.numRetweets + 1,
+          });
+        }
+      });
+  };
+
   return (
     <Wrapper>
       <ActionDiv>
@@ -48,10 +84,18 @@ const ActionBar = ({ singleTweet }) => {
           <FiMessageCircle style={IconStyle} />
         </Action>
       </ActionDiv>
-      <ActionDiv>
-        <Stats></Stats>
+      <ActionDiv
+        onClick={(ev) => {
+          ev.stopPropagation();
+          handleRetweet();
+        }}
+      >
+        <Stats>{retweetInfo.numRetweets > 0 && retweetInfo.numRetweets}</Stats>
         <Action color="rgb(23, 191, 99)" size={40}>
-          <FiRepeat style={IconStyle} />
+          <FiRepeat
+            style={IconStyle}
+            color={retweetInfo.isRetweeted ? "rgb(23, 191,99)" : undefined}
+          />
         </Action>
       </ActionDiv>
       <ActionDiv

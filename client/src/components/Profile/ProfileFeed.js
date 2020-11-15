@@ -27,8 +27,8 @@ const ProfileFeed = () => {
     getProfileFeed && (
       <Wrapper>
         {tweets
-          .map((tweet, index) => {
-            return <TweetFeed tweet={tweet} />;
+          .map((tweet, key) => {
+            return <TweetFeed tweet={tweet} key={tweet.id} />;
           })
           .reverse()}
       </Wrapper>

@@ -64,12 +64,12 @@ const ActionBar = ({ tweet }) => {
       .then(() => {
         if (retweetInfo.isRetweeted) {
           setRetweetInfo({
-            retweetInfo: false,
+            isRetweeted: false,
             numRetweets: retweetInfo.numRetweets - 1,
           });
         } else {
           setRetweetInfo({
-            retweetInfo: true,
+            isRetweeted: true,
             numRetweets: retweetInfo.numRetweets + 1,
           });
         }
@@ -85,19 +85,19 @@ const ActionBar = ({ tweet }) => {
               <FiMessageCircle style={IconStyle} />
             </Action>
           </ActionDiv>
-          <ActionDiv>
-            <Stats>{tweet.numRetweets > 0 && tweet.numRetweets}</Stats>
-            <Action
-              color="rgb(23, 191, 99)"
-              size={40}
-              onClick={(ev) => {
-                ev.stopPropagation();
-                handleRetweet();
-              }}
-            >
+          <ActionDiv
+            onClick={(ev) => {
+              ev.stopPropagation();
+              handleRetweet();
+            }}
+          >
+            <Stats>
+              {retweetInfo.numRetweets > 0 && retweetInfo.numRetweets}
+            </Stats>
+            <Action color="rgb(23, 191, 99)" size={40}>
               <FiRepeat
                 style={IconStyle}
-                // color={isRetweeted ? "rgb(23, 191,99)" : undefined}
+                color={retweetInfo.isRetweeted ? "rgb(23, 191,99)" : undefined}
               />
             </Action>
           </ActionDiv>
